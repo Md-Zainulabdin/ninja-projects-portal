@@ -3,7 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ninja Projects Portal",
+  title: "Innovate.dev",
   description: "Developed by ~ Zain-ul-Abdin",
 };
 
