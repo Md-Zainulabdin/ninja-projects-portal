@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -25,9 +26,12 @@ const formSchema = z.object({
   }),
 });
 
+type ProjectFormValues = z.infer<typeof formSchema>;
+
 const CreateProjectForm = () => {
-    
-  const form = useForm<z.infer<typeof formSchema>>({
+  const [loading, setLoading] = useState(false);
+
+  const form = useForm<ProjectFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
@@ -35,16 +39,17 @@ const CreateProjectForm = () => {
     },
   });
 
-  const [loading, setLoading] = useState(false);
-
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmitHandler = async (data: ProjectFormValues) => {
+    console.log(data);
   };
 
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form
+          onSubmit={form.handleSubmit(onSubmitHandler)}
+          className="space-y-4 w-full"
+        >
           <FormField
             control={form.control}
             name="title"
@@ -52,14 +57,38 @@ const CreateProjectForm = () => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter title..." {...field} />
+                  <Input
+                    disabled={loading}
+                    placeholder="Enter title..."
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit">Submit</Button>
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Textarea
+                    disabled={loading}
+                    placeholder="Enter description..."
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button disabled={loading} type="submit">
+            Submit
+          </Button>
         </form>
       </Form>
     </div>

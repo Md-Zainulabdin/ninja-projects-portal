@@ -1,7 +1,7 @@
 import Link from "next/link";
+import { UserButton, auth } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
-import { UserButton, auth } from "@clerk/nextjs";
 import MainNav from "./MainNav";
 
 const Navbar = async () => {
@@ -15,7 +15,7 @@ const Navbar = async () => {
       </div>
 
       <div className="menu flex items-center space-x-6">
-        <MainNav />
+        {userId && <MainNav />}
         <div>
           {userId ? (
             <UserButton afterSignOutUrl="/" />
