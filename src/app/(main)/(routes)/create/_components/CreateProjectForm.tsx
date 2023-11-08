@@ -26,6 +26,7 @@ const formSchema = z.object({
     message: "Description must be at least 2 characters.",
   }),
   imageUrl: z.string().min(1),
+  liveUrl: z.string().min(1),
 });
 
 type ProjectFormValues = z.infer<typeof formSchema>;
@@ -39,6 +40,7 @@ const CreateProjectForm = () => {
       title: "",
       description: "",
       imageUrl: "",
+      liveUrl: "",
     },
   });
 
@@ -85,6 +87,26 @@ const CreateProjectForm = () => {
                   <Textarea
                     disabled={loading}
                     placeholder="Enter description..."
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="liveUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[#333]">
+                  Live URL <span className="text-red-400">*</span>
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={loading}
+                    placeholder="Enter URL..."
                     {...field}
                   />
                 </FormControl>
