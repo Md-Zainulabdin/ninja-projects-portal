@@ -1,8 +1,12 @@
 "use client";
 
 import * as z from "zod";
+import axios from "axios";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Loader2 } from "lucide-react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -32,6 +36,12 @@ const formSchema = z.object({
 type ProjectFormValues = z.infer<typeof formSchema>;
 
 const CreateProjectForm = () => {
+  // Spinner
+  const Icons = {
+    spinner: Loader2,
+  };
+
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const form = useForm<ProjectFormValues>({
@@ -45,7 +55,18 @@ const CreateProjectForm = () => {
   });
 
   const onSubmitHandler = async (data: ProjectFormValues) => {
-    console.log(data);
+    // console.log(data);
+    setLoading(true);
+
+    try {
+      await axios.post("/api/project", data);
+      router.push("/");
+    } catch (error) {
+      console.log("error", error);
+      toast.error("Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -137,6 +158,7 @@ const CreateProjectForm = () => {
           />
 
           <Button disabled={loading} type="submit">
+            {loading && <Icons.spinner className="h-4 w-4 animate-spin mr-2" />}
             Submit
           </Button>
         </form>
