@@ -55,7 +55,7 @@ const CreateProjectForm = () => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel className="text-[#333]">Title <span className="text-red-400">*</span></FormLabel>
                 <FormControl>
                   <Input
                     disabled={loading}
@@ -73,7 +73,7 @@ const CreateProjectForm = () => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel className="text-[#333]">Description <span className="text-red-400">*</span></FormLabel>
                 <FormControl>
                   <Textarea
                     disabled={loading}

@@ -15,7 +15,7 @@ const page = () => {
 
       <Separator/>
 
-      <div className="w-full max-w-xl py-8">
+      <div className="w-full max-w-xl py-6">
         <CreateProjectForm />
       </div>
     </div>
