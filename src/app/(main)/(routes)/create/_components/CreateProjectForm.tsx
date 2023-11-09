@@ -7,6 +7,13 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Loader2 } from "lucide-react";
+import {
+  TbBrandNextjs,
+  TbBrandReact,
+  TbBrandAngular,
+  TbBrandVue,
+  TbBrandJavascript,
+} from "react-icons/tb";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -21,6 +28,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "@/components/Image-Upload";
+import { Toggle } from "@/components/ui/toggle";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -31,6 +40,9 @@ const formSchema = z.object({
   }),
   imageUrl: z.string().min(1),
   liveUrl: z.string().min(1),
+  techs: z.array(z.string()).refine((value) => value.some((item) => item), {
+    message: "You have to select at least one Tech Stack.",
+  }),
 });
 
 type ProjectFormValues = z.infer<typeof formSchema>;
@@ -44,6 +56,29 @@ const CreateProjectForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
+  const techStacks = [
+    {
+      label: "Next JS",
+      icon: <TbBrandNextjs className={"w-7 h-7 text-[#333]"} />,
+    },
+    {
+      label: "React JS",
+      icon: <TbBrandReact className={"w-7 h-7 text-[#333]"} />,
+    },
+    {
+      label: "Angular",
+      icon: <TbBrandAngular className={"w-7 h-7 text-[#333]"} />,
+    },
+    {
+      label: "Vue",
+      icon: <TbBrandVue className={"w-7 h-7 text-[#333]"} />,
+    },
+    {
+      label: "Javascript",
+      icon: <TbBrandJavascript className={"w-7 h-7 text-[#333]"} />,
+    },
+  ];
+
   const form = useForm<ProjectFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,22 +86,23 @@ const CreateProjectForm = () => {
       description: "",
       imageUrl: "",
       liveUrl: "",
+      techs: [""],
     },
   });
 
   const onSubmitHandler = async (data: ProjectFormValues) => {
-    // console.log(data);
-    setLoading(true);
+    console.log(data);
+    // setLoading(true);
 
-    try {
-      await axios.post("/api/project", data);
-      router.push("/");
-    } catch (error) {
-      console.log("error", error);
-      toast.error("Something went wrong!");
-    } finally {
-      setLoading(false);
-    }
+    // try {
+    //   await axios.post("/api/project", data);
+    //   router.push("/");
+    // } catch (error) {
+    //   console.log("error", error);
+    //   toast.error("Something went wrong!");
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
@@ -130,6 +166,38 @@ const CreateProjectForm = () => {
                     placeholder="Enter URL..."
                     {...field}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="techs"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[#333]">
+                  Tech Stack <span className="text-red-400">*</span>
+                </FormLabel>
+                <FormControl>
+                  <div className="flex gap-4">
+                    {techStacks.map((tech) => (
+                      <>
+                        <Checkbox id={tech.label} />
+                        <FormLabel>
+                          <Toggle
+                            key={tech.label}
+                            className="w-[65px] h-[60px]"
+                            variant={"outline"}
+                            size={"lg"}
+                          >
+                            {tech.icon}
+                          </Toggle>
+                        </FormLabel>
+                      </>
+                    ))}
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>

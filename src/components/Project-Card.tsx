@@ -15,11 +15,11 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
   return (
     <div>
-      <div className="flex items-start gap-8 flex-wrap">
+      <div className="flex items-start gap-6 flex-wrap">
         {projects.map((project) => (
           <div
             key={project.id}
-            className="relative w-[380px] border transition duration-500 ease-in-out cursor-pointer rounded-md hover:shadow-xl overflow-hidden"
+            className="relative w-[365px] border transition duration-500 ease-in-out cursor-pointer rounded-md hover:shadow-xl overflow-hidden"
           >
             <div className="absolute z-20 top-2 right-2">
               <Link href={project.liveUrl} target="_blank">
