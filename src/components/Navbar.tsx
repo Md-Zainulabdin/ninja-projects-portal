@@ -4,7 +4,7 @@ import { UserButton, auth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import MainNav from "./MainNav";
 
-const Navbar = async () => {
+const Navbar = () => {
   const { userId } = auth();
   return (
     <nav className="w-full h-16 flex items-center justify-between px-12 border-b mb-6">

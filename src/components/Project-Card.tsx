@@ -7,8 +7,6 @@ import { ArrowUpRight } from "lucide-react";
 import { Project } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { User } from "@clerk/nextjs/server";
-import UserCard from "@/app/(main)/(routes)/_components/UserCard";
 
 interface ProjectCardProps {
   projects: Project[];
@@ -21,7 +19,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="relative w-[380px] h-[325px] border transition duration-500 ease-in-out cursor-pointer rounded-md hover:shadow-xl overflow-hidden"
+            className="relative w-[380px] border transition duration-500 ease-in-out cursor-pointer rounded-md hover:shadow-xl overflow-hidden"
           >
             <div className="absolute z-20 top-2 right-2">
               <Link href={project.liveUrl} target="_blank">
@@ -32,6 +30,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
             </div>
 
             <div className="relative overflow-hidden h-[200px] border-b">
+              <div className="overlay w-full h-full absolute top-0 left-0 z-10 opacity-50"></div>
               <Image
                 fill
                 className="object-cover"
@@ -42,9 +41,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
 
             <div className="project-desc p-3">
               <h1 className="text-lg font-medium">{project.title}</h1>
-              <Separator className="my-4" />
-
-              <UserCard />
+              <p className="text-sm text-muted-foreground mt-1">
+                {project.description}
+              </p>
             </div>
           </div>
         ))}

@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import ProjectCard from "@/components/Project-Card";
 
 const Home = async () => {
-
   const projects = await prismadb.project.findMany({});
 
   return (
