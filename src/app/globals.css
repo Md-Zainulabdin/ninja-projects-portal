@@ -67,3 +67,7 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
 }
+
+.overlay {
+  background: linear-gradient(0deg, #000000e5 -17.37%, rgba(0, 0, 0, 0.00) 66.72%);
+}
