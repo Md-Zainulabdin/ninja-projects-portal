@@ -19,7 +19,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="relative w-[365px] border transition duration-500 ease-in-out cursor-pointer rounded-md hover:shadow-xl overflow-hidden"
+            className="relative w-[365px] transition duration-500 ease-in-out cursor-pointer rounded-md hover:shadow-xl overflow-hidden"
           >
             <div className="absolute z-20 top-2 right-2">
               <Link href={project.liveUrl} target="_blank">
@@ -39,9 +39,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
               />
             </div>
 
-            <div className="project-desc p-3">
-              <h1 className="text-lg font-medium">{project.title}</h1>
-              <p className="text-sm text-muted-foreground mt-1">
+            <div className="project-desc px-3 pt-2 pb-4">
+              <h1 className="text-lg font-semibold">{project.title}</h1>
+              <p className="text-sm text-muted-foreground mt-1" id="_paragraph">
                 {project.description}
               </p>
             </div>
