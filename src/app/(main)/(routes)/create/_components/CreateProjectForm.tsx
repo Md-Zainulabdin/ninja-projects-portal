@@ -58,11 +58,11 @@ const CreateProjectForm = () => {
 
   const techStacks = [
     {
-      label: "Next JS",
+      label: "NextJS",
       icon: <TbBrandNextjs className={"w-7 h-7 text-[#333]"} />,
     },
     {
-      label: "React JS",
+      label: "ReactJS",
       icon: <TbBrandReact className={"w-7 h-7 text-[#333]"} />,
     },
     {
@@ -86,23 +86,23 @@ const CreateProjectForm = () => {
       description: "",
       imageUrl: "",
       liveUrl: "",
-      techs: [""],
+      techs: [],
     },
   });
 
   const onSubmitHandler = async (data: ProjectFormValues) => {
-    console.log(data);
-    // setLoading(true);
+    // console.log(data);
+    setLoading(true);
 
-    // try {
-    //   await axios.post("/api/project", data);
-    //   router.push("/");
-    // } catch (error) {
-    //   console.log("error", error);
-    //   toast.error("Something went wrong!");
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      await axios.post("/api/project", data);
+      router.push("/");
+    } catch (error) {
+      console.log("error", error);
+      toast.error("Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -165,6 +165,7 @@ const CreateProjectForm = () => {
                     disabled={loading}
                     placeholder="Enter URL..."
                     {...field}
+                    autoComplete="off"
                   />
                 </FormControl>
                 <FormMessage />
@@ -180,25 +181,53 @@ const CreateProjectForm = () => {
                 <FormLabel className="text-[#333]">
                   Tech Stack <span className="text-red-400">*</span>
                 </FormLabel>
-                <FormControl>
-                  <div className="flex gap-4">
-                    {techStacks.map((tech) => (
-                      <>
-                        <Checkbox id={tech.label} />
-                        <FormLabel>
-                          <Toggle
-                            key={tech.label}
-                            className="w-[65px] h-[60px]"
-                            variant={"outline"}
-                            size={"lg"}
+                <div className="flex items-center gap-4">
+                  {techStacks.map((item) => (
+                    <FormField
+                      key={item.label}
+                      control={form.control}
+                      name="techs"
+                      render={({ field }) => {
+                        return (
+                          <FormItem
+                            key={item.label}
+                            className="flex flex-row items-start space-x-3 space-y-0"
                           >
-                            {tech.icon}
-                          </Toggle>
-                        </FormLabel>
-                      </>
-                    ))}
-                  </div>
-                </FormControl>
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value?.includes(item.label)}
+                                onCheckedChange={(checked) => {
+                                  return checked
+                                    ? field.onChange([
+                                        ...field.value,
+                                        item.label,
+                                      ])
+                                    : field.onChange(
+                                        field.value?.filter(
+                                          (value) => value !== item.label
+                                        )
+                                      );
+                                }}
+                              />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              <div>
+                                <Toggle
+                                  key={item.label}
+                                  className="w-[65px] h-[60px]"
+                                  variant={"outline"}
+                                  size={"lg"}
+                                >
+                                  {item.icon}
+                                </Toggle>
+                              </div>
+                            </FormLabel>
+                          </FormItem>
+                        );
+                      }}
+                    />
+                  ))}
+                </div>
                 <FormMessage />
               </FormItem>
             )}
@@ -236,3 +265,23 @@ const CreateProjectForm = () => {
 };
 
 export default CreateProjectForm;
+
+{
+  /* <div className="flex gap-4">
+  {techStacks.map((tech) => (
+    <>
+      <Checkbox id={tech.label} />
+      <FormLabel>
+        <Toggle
+          key={tech.label}
+          className="w-[65px] h-[60px]"
+          variant={"outline"}
+          size={"lg"}
+        >
+          {tech.icon}
+        </Toggle>
+      </FormLabel>
+    </>
+  ))}
+</div>; */
+}

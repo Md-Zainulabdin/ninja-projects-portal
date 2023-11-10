@@ -11,10 +11,11 @@ datasource db {
 }
 
 model Project {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
   imageUrl    String
   liveUrl     String
   userId      String
+  techs       String[]
 }
