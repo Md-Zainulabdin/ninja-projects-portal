@@ -1,10 +1,15 @@
 "use client";
 
-import { Modal } from "@/components/ui/modal";
+import { useProjectID } from "@/hooks/PorjectId";
 import { useProjectModal } from "@/hooks/modal";
+
+import { Modal } from "@/components/ui/modal";
 
 const ProjectModal = () => {
   const projectModal = useProjectModal();
+  const projectID = useProjectID();
+
+
   return (
     <Modal
       title="hello World"

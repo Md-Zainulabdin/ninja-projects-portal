@@ -7,6 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Project } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { useProjectModal } from "@/hooks/modal";
+import { useProjectID } from "@/hooks/PorjectId";
 
 interface ProjectCardProps {
   projects: Project[];
@@ -14,6 +15,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
   const projectModal = useProjectModal();
+  const projectID = useProjectID();
   return (
     <div>
       <div className="flex items-start gap-6 flex-wrap">
@@ -49,7 +51,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
               <div className="detail-modal flex items-center space-x-2 mt-2">
                 <span
                   className="text-sm text-indigo-500 hover:underline"
-                  onClick={projectModal.onOpen}
+                  onClick={() => {
+                    projectModal.onOpen();
+                    projectID.setProjectId(project.id);
+                  }}
                 >
                   Details
                 </span>
