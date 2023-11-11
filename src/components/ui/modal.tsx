@@ -13,6 +13,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children?: React.ReactNode;
+  removeId: () => void;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -21,9 +22,11 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   children,
+  removeId,
 }) => {
   const onChange = (open: boolean) => {
     if (!open) {
+      removeId();
       onClose();
     }
   };
