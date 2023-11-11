@@ -2,6 +2,15 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
+type ProjectData = {
+  title: string;
+  description: string;
+  userId: string;
+  imageUrl: string;
+  liveUrl: string;
+  techs: string[];
+};
+
 export const POST = async (req: NextRequest) => {
   const { userId } = auth();
   const { title, description, imageUrl, liveUrl, techs } = await req.json();
@@ -15,14 +24,7 @@ export const POST = async (req: NextRequest) => {
   }
 
   try {
-    const projectData: {
-      title: string;
-      description: string;
-      userId: string;
-      imageUrl: string;
-      liveUrl: string;
-      techs: string[];
-    } = {
+    const projectData: ProjectData = {
       title,
       description,
       userId,

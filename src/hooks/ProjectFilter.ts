@@ -1,6 +1,13 @@
 import { create } from "zustand";
 
-export const useFilter = create((set) => ({
+interface useFilterInterface {
+  filter: string;
+  setFilterValue: (val: string) => void;
+  removeFilterValue: (val: string) => void;
+}
+
+export const useFilter = create<useFilterInterface>((set) => ({
   filter: "ALL",
-  setFilterValue: (val: string) => set({ filter: val }),
+  setFilterValue: (val) => set({ filter: val }),
+  removeFilterValue: (val) => set({ filter: "ALL" }),
 }));
