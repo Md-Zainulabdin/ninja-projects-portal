@@ -10,7 +10,7 @@ const Home = async () => {
 
   return (
     <>
-      <div className="p-12">
+      <div className="py-12">
         <Hero />
       </div>
 

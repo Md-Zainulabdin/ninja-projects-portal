@@ -1,5 +1,5 @@
 import prismadb from "@/lib/prismadb";
-import { auth } from "@clerk/nextjs";
+import { auth, clerkClient } from "@clerk/nextjs";
 
 import { NextRequest, NextResponse } from "next/server";
 
@@ -20,7 +20,9 @@ export const GET = async (
       },
     });
 
-    return NextResponse.json(project, { status: 200 });
+    const user = await clerkClient.users.getUser(project?.userId || "");
+
+    return NextResponse.json({ project, user }, { status: 200 });
   } catch (error) {
     console.log("PORJECT-GET", error);
     return new NextResponse("Internal Error", { status: 400 });

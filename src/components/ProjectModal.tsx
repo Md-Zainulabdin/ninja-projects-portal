@@ -11,12 +11,18 @@ import { useProjectID } from "@/hooks/PorjectId";
 import { useProjectModal } from "@/hooks/modal";
 
 import { Modal } from "@/components/ui/modal";
-import { useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 
+interface User {
+  firstName?: string;
+  lastName?: string;
+  imageUrl?: string;
+  emailAddresses?: { id: string; emailAddress: string }[];
+}
+
 const ProjectModal = () => {
-  const { user } = useUser();
+  const [user, setUser] = useState<User>({});
   const projectModal = useProjectModal();
   const projectID = useProjectID();
 
@@ -30,16 +36,15 @@ const ProjectModal = () => {
     axios
       .get(`/api/project/${projectID.id}`)
       .then((res) => {
-        setProject(res.data);
+        setProject(res.data?.project);
+        setUser(res.data?.user);
+        // console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
         toast.error("Something Went Wrong!");
       });
   }, [projectID.id]);
-
-  console.log("id",projectID.id);
-  console.log("project", project);
 
   return (
     <Modal
@@ -54,7 +59,7 @@ const ProjectModal = () => {
           <Image
             width={1000}
             height={120}
-            src={project?.imageUrl || ""}
+            src={project?.imageUrl || "/dummy-image.jpg"}
             alt="Porject-Image rounded-xl"
           />
         </div>
@@ -65,7 +70,7 @@ const ProjectModal = () => {
               <div className="logo">
                 <Link href={"/profile"}>
                   <Image
-                    src={user?.imageUrl || ""}
+                    src={user?.imageUrl || "/dummy-profile.jpg"}
                     width={40}
                     height={40}
                     alt="Profile Image"
@@ -78,7 +83,7 @@ const ProjectModal = () => {
                   {user?.firstName} {user?.lastName}
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  {user?.emailAddresses.map((data) => (
+                  {user?.emailAddresses?.map((data) => (
                     <span key={data.id}>{data.emailAddress}</span>
                   ))}
                 </p>
