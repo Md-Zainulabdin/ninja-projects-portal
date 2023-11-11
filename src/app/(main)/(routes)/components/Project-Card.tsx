@@ -6,13 +6,14 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Project } from "@prisma/client";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { useProjectModal } from "@/hooks/modal";
 
 interface ProjectCardProps {
   projects: Project[];
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
+  const projectModal = useProjectModal();
   return (
     <div>
       <div className="flex items-start gap-6 flex-wrap">
@@ -44,6 +45,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
               <p className="text-sm text-muted-foreground mt-1" id="_paragraph">
                 {project.description}
               </p>
+
+              <div className="detail-modal flex items-center space-x-2 mt-2">
+                <span
+                  className="text-sm text-indigo-500 hover:underline"
+                  onClick={projectModal.onOpen}
+                >
+                  Details
+                </span>
+                {/* <ArrowRight className="w-4 h-4 text-indigo-500" /> */}
+              </div>
             </div>
           </div>
         ))}

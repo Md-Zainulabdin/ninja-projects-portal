@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import ToastProvider from "@/providers/toast-provider";
 
 import "./globals.css";
+import { ModalProvider } from "@/providers/modal-provider";
 
 export const metadata: Metadata = {
   title: "Innovate.dev",
@@ -20,6 +21,7 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <ToastProvider />
+          <ModalProvider />
           {children}
         </body>
       </html>
