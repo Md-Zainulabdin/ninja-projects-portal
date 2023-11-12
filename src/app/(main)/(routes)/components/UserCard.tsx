@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs";
 const UserCard = async () => {
   const user = await currentUser();
   return (
-    <div className="flex flex-col gap-4 justify-center items-center">
+    <div className="px-6 flex flex-col gap-4 justify-center items-start">
         <div className="img">
           <img
             className="rounded-full w-[70px] h-[70px]"
@@ -12,7 +12,7 @@ const UserCard = async () => {
           />
         </div>
 
-        <div className="profile text-center">
+        <div className="profile text-left">
           <h1 className="text-2xl font-semibold text-[#333]">
             {user?.firstName} {user?.lastName}
           </h1>

@@ -12,6 +12,7 @@ import { useProjectModal } from "@/hooks/modal";
 
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowUpRight } from "lucide-react";
 
 interface User {
@@ -56,12 +57,16 @@ const ProjectModal = () => {
     >
       <div>
         <div className="img-src rounded-xl overflow-hidden">
-          <Image
-            width={1000}
-            height={120}
-            src={project?.imageUrl || "/dummy-image.jpg"}
-            alt="Porject-Image rounded-xl"
-          />
+          {!project?.imageUrl ? (
+            <Skeleton className="w-full h-[200px] rounded-xl" />
+          ) : (
+            <Image
+              width={1000}
+              height={120}
+              src={project?.imageUrl || "/dummy-image.jpg"}
+              alt="Porject-Image rounded-xl"
+            />
+          )}
         </div>
 
         <div className="user-card mt-4">
