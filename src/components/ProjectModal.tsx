@@ -39,7 +39,6 @@ const ProjectModal = () => {
       .then((res) => {
         setProject(res.data?.project);
         setUser(res.data?.user);
-        // console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
