@@ -8,8 +8,8 @@ const MainNav = () => {
   const routes = [
     {
       label: "Create",
-      href: "/create",
-      active: pathname === '/create',
+      href: "/create/new",
+      active: pathname === '/create/new',
     },
     {
       label: "Profile",

@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Loader2 } from "lucide-react";
+import { Loader2, Trash } from "lucide-react";
 import {
   TbBrandNextjs,
   TbBrandReact,
@@ -31,6 +31,8 @@ import ImageUpload from "@/components/Image-Upload";
 import { Toggle } from "@/components/ui/toggle";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Project } from "@prisma/client";
+import Heading from "@/components/ui/Heading";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -46,10 +48,13 @@ const formSchema = z.object({
   }),
 });
 
+interface UpdateProjectValue {
+  initialValue: Project | null;
+}
 
 type ProjectFormValues = z.infer<typeof formSchema>;
 
-const CreateProjectForm = () => {
+const UpdateProjectForm: React.FC<UpdateProjectValue> = ({ initialValue }) => {
   // Spinner
   const Icons = {
     spinner: Loader2,
@@ -83,7 +88,7 @@ const CreateProjectForm = () => {
 
   const form = useForm<ProjectFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: initialValue || {
       title: "",
       description: "",
       imageUrl: "",
@@ -93,7 +98,6 @@ const CreateProjectForm = () => {
   });
 
   const onSubmitHandler = async (data: ProjectFormValues) => {
-    // console.log(data);
     setLoading(true);
 
     try {
@@ -109,10 +113,27 @@ const CreateProjectForm = () => {
 
   return (
     <div>
+      <div className="pb-4 flex justify-between items-center">
+        <Heading
+          title="Update Project"
+          description="Update project to showcase your skills"
+        />
+
+        {initialValue && (
+          <Button disabled={loading} variant={"destructive"} size={"default"}>
+            <Trash className="h-4 w-4" />
+          </Button>
+        )}
+      </div>
+
+      <div className="my-4">
+        <Separator />
+      </div>
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmitHandler)}
-          className="space-y-4 w-full"
+          className="space-y-4 w-full max-w-xl"
         >
           <FormField
             control={form.control}
@@ -266,24 +287,4 @@ const CreateProjectForm = () => {
   );
 };
 
-export default CreateProjectForm;
-
-{
-  /* <div className="flex gap-4">
-  {techStacks.map((tech) => (
-    <>
-      <Checkbox id={tech.label} />
-      <FormLabel>
-        <Toggle
-          key={tech.label}
-          className="w-[65px] h-[60px]"
-          variant={"outline"}
-          size={"lg"}
-        >
-          {tech.icon}
-        </Toggle>
-      </FormLabel>
-    </>
-  ))}
-</div>; */
-}
+export default UpdateProjectForm;

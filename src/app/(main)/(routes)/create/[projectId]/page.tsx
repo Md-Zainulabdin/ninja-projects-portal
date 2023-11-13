@@ -1,9 +1,14 @@
-import Heading from "@/components/ui/Heading";
 import React from "react";
-import CreateProjectForm from "./_components/CreateProjectForm";
+import Heading from "@/components/ui/Heading";
+import CreateProjectForm from "../_components/CreateProjectForm";
 import { Separator } from "@/components/ui/separator";
 
-const page = () => {
+const CreateProjectPage = async ({
+  params,
+}: {
+  params: { projectId: string };
+}) => {
+
   return (
     <div>
       <div className="py-6">
@@ -13,7 +18,7 @@ const page = () => {
         />
       </div>
 
-      <Separator/>
+      <Separator />
 
       <div className="w-full max-w-xl py-6">
         <CreateProjectForm />
@@ -22,4 +27,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default CreateProjectPage;

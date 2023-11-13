@@ -1,5 +1,5 @@
 import React from "react";
-import UserCard from "../components/UserCard";
+import UserCard from "../(root)/components/UserCard";
 import { auth } from "@clerk/nextjs";
 import prismadb from "@/lib/prismadb";
 

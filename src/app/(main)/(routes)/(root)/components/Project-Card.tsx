@@ -12,6 +12,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
+  // console.log(projects);
+
   return (
     <div>
       <div className="flex items-start gap-6 flex-wrap">

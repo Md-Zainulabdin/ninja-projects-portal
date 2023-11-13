@@ -4,7 +4,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Navbar />
-      <main className="px-12">{children}</main>
+      <main className="px-6 lg:px-12">{children}</main>
     </>
   );
 };
