@@ -101,8 +101,9 @@ const UpdateProjectForm: React.FC<UpdateProjectValue> = ({ initialValue }) => {
     setLoading(true);
 
     try {
-      await axios.post("/api/project", data);
+      await axios.patch(`/api/project/${initialValue?.id}`, data);
       router.push("/");
+      toast.success("Project Updated!");
     } catch (error) {
       console.log("error", error);
       toast.error("Something went wrong!");
@@ -110,6 +111,8 @@ const UpdateProjectForm: React.FC<UpdateProjectValue> = ({ initialValue }) => {
       setLoading(false);
     }
   };
+
+  const onDeleteHandler = () => {};
 
   return (
     <div>
@@ -279,7 +282,7 @@ const UpdateProjectForm: React.FC<UpdateProjectValue> = ({ initialValue }) => {
 
           <Button disabled={loading} type="submit">
             {loading && <Icons.spinner className="h-4 w-4 animate-spin mr-2" />}
-            Submit
+            Save Changes
           </Button>
         </form>
       </Form>
