@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 const Home = () => {
   return (
     <div>
-      <div className="Hero-Text flex flex-col space-y-5 justify-center items-center py-12 md:py-20">
+      <div className="relative z-20 Hero-Text flex flex-col space-y-5 justify-center items-center py-12 md:py-20">
         <div>
           <span className="px-6 py-2 border text-muted-foreground shadow-md rounded-full">
             A Place Where Ideas Shines 🚀
@@ -36,6 +36,8 @@ const Home = () => {
           </Link>
         </div>
       </div>
+
+      <div className="footer-gradient z-0"></div>
 
       <div className="Hero-Image"></div>
     </div>

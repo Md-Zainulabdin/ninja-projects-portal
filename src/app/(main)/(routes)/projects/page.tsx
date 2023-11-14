@@ -1,7 +1,7 @@
 import prismadb from "@/lib/prismadb";
 
 import Hero from "@/app/(main)/(routes)/projects/_components/Hero";
-import ProjectCard from "@/app/(main)/(routes)/(root)/components/Project-Card";
+import ProjectCard from "@/app/(main)/(routes)/projects/_components/Project-Card";
 import FilterOptions from "@/components/FilterOptions";
 import { Separator } from "@/components/ui/separator";
 

@@ -7,7 +7,7 @@ import MainNav from "./MainNav";
 const Navbar = () => {
   const { userId } = auth();
   return (
-    <nav className="w-full h-20 flex items-center justify-between px-6 lg:px-12 border-b mb-6">
+    <nav className="w-full h-20 flex items-center justify-between px-6 lg:px-12 border-b mb-6 bg-white">
       <div className="logo flex items-center space-x-6">
         <Link className="text-2xl font-bold text-[#222]" href={"/"}>
           Innovate.dev

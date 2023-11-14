@@ -46,7 +46,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
   // Render the component
   return (
     <div>
-      <div className="flex items-start gap-6 flex-wrap">
+      <div className="flex items-start justify-center gap-6 flex-wrap">
         {filterProject.length !== 0 ? (
           filterProject.map((project) => (
             <div
