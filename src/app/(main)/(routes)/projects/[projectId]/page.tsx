@@ -43,16 +43,6 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
       <div>
         <div className="parent pb-12 mt-12 flex items-start justify-between gap-8 flex-col ">
           <div className="project-desc w-full space-y-7 pb-12">
-            {/* <div className="flex items-center space-x-1">
-              <span className="text-muted-foreground text-sm hover:underline">
-                <Link href={"/"}>Home</Link>
-              </span>
-
-              <ChevronRight className="w-4 h-4 text-muted-foreground" />
-
-              <span className="text-sm font-medium">Project</span>
-            </div> */}
-
             <div className="w-full flex flex-col items-center justify-center text-center space-y-2">
               <h1 className="text-5xl font-semibold text-[#222]">
                 {project?.title}

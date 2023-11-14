@@ -33,6 +33,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Project } from "@prisma/client";
 import Heading from "@/components/ui/Heading";
 import { Separator } from "@/components/ui/separator";
+import AlertModal from "@/components/modals/Alert-Modal";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -61,6 +62,8 @@ const UpdateProjectForm: React.FC<UpdateProjectValue> = ({ initialValue }) => {
   };
 
   const router = useRouter();
+
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const techStacks = [
@@ -112,10 +115,30 @@ const UpdateProjectForm: React.FC<UpdateProjectValue> = ({ initialValue }) => {
     }
   };
 
-  const onDeleteHandler = () => {};
+  const onDeleteHandler = async () => {
+    try {
+      setLoading(true);
+      await axios.delete(`/api/project/${initialValue?.id}`);
+      router.refresh();
+      router.push("/projects");
+      toast.success("Project Deleted!");
+    } catch (error) {
+      toast.error("Make sure you are right path!");
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
 
   return (
-    <div>
+    <>
+      <AlertModal
+        isOpen={open}
+        loading={loading}
+        onClose={() => setOpen(false)}
+        onConfirm={onDeleteHandler}
+      />
+
       <div className="pb-4 flex justify-between items-center">
         <Heading
           title="Update Project"
@@ -123,7 +146,12 @@ const UpdateProjectForm: React.FC<UpdateProjectValue> = ({ initialValue }) => {
         />
 
         {initialValue && (
-          <Button disabled={loading} variant={"destructive"} size={"default"}>
+          <Button
+            disabled={loading}
+            variant={"destructive"}
+            size={"default"}
+            onClick={() => setOpen(true)}
+          >
             <Trash className="h-4 w-4" />
           </Button>
         )}
@@ -286,7 +314,7 @@ const UpdateProjectForm: React.FC<UpdateProjectValue> = ({ initialValue }) => {
           </Button>
         </form>
       </Form>
-    </div>
+    </>
   );
 };
 
