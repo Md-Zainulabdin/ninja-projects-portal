@@ -23,12 +23,12 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
         </div>
         <div className="space-x-3">
           {userId === project?.userId ? (
-            <Button size={"icon"} variant={"secondary"}>
-              <Link href={`/update/${project?.id}`}>
+            <Link href={`/update/${project?.id}`}>
+              <Button size={"icon"} variant={"secondary"}>
                 {" "}
                 <Edit2 className="w-4 h-4" />
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           ) : null}
 
           <Button size={"icon"} color="#222">

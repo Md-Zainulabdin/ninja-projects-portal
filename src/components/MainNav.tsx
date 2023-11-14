@@ -7,14 +7,14 @@ const MainNav = () => {
   const pathname = usePathname();
   const routes = [
     {
-      label: "Create",
-      href: "/create/new",
-      active: pathname === '/create/new',
+      label: "Projects",
+      href: "/projects",
+      active: pathname === "/projects",
     },
     {
-      label: "Profile",
-      href: "/profile",
-      active: pathname === '/profile',
+      label: "Create",
+      href: "/create/new",
+      active: pathname === "/create/new",
     },
   ];
   return (
@@ -24,9 +24,9 @@ const MainNav = () => {
           <Link
             key={route.href}
             className={cn(
-              "text-md font-medium transtion-colors hover:text-primary",
+              "text-md transtion-colors hover:text-primary",
               route.active
-                ? "text-black dark:text-white"
+                ? "text-primary dark:text-white"
                 : "text-muted-foreground"
             )}
             href={route.href}

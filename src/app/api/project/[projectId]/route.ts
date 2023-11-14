@@ -72,3 +72,30 @@ export const PATCH = async (
     return new NextResponse("Internal error", { status: 500 });
   }
 };
+
+export const DELETE = async (
+  req: NextRequest,
+  { params }: { params: { projectId: string } }
+) => {
+  const { userId } = auth();
+  if (!userId) {
+    return new NextResponse("Unauthenticated", { status: 401 });
+  }
+
+  if (!params.projectId) {
+    return new NextResponse("Project ID is required!", { status: 400 });
+  }
+
+  try {
+    const project = await prismadb.project.deleteMany({
+      where: {
+        id: params.projectId,
+      },
+    });
+
+    return NextResponse.json(project);
+  } catch (error) {
+    console.log("[PROJECT-DELETE]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+};

@@ -256,7 +256,7 @@ const CreateProjectForm = () => {
             )}
           />
 
-          <Button disabled={loading} type="submit">
+          <Button disabled={loading} size={"lg"} type="submit">
             {loading && <Icons.spinner className="h-4 w-4 animate-spin mr-2" />}
             Create
           </Button>
