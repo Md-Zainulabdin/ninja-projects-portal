@@ -46,7 +46,6 @@ const formSchema = z.object({
   }),
 });
 
-
 type ProjectFormValues = z.infer<typeof formSchema>;
 
 const CreateProjectForm = () => {
@@ -98,7 +97,8 @@ const CreateProjectForm = () => {
 
     try {
       await axios.post("/api/project", data);
-      router.push("/");
+      router.refresh();
+      router.push("/projects");
     } catch (error) {
       console.log("error", error);
       toast.error("Something went wrong!");
@@ -267,23 +267,3 @@ const CreateProjectForm = () => {
 };
 
 export default CreateProjectForm;
-
-{
-  /* <div className="flex gap-4">
-  {techStacks.map((tech) => (
-    <>
-      <Checkbox id={tech.label} />
-      <FormLabel>
-        <Toggle
-          key={tech.label}
-          className="w-[65px] h-[60px]"
-          variant={"outline"}
-          size={"lg"}
-        >
-          {tech.icon}
-        </Toggle>
-      </FormLabel>
-    </>
-  ))}
-</div>; */
-}
