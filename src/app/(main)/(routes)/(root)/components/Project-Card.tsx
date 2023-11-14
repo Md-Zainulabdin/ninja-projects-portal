@@ -86,7 +86,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
                 {/* Link to project details page */}
                 <div className="detail-modal flex items-center space-x-2 mt-2">
                   <Link href={`/projects/${project.id}`}>
-                    <span className="text-sm text-indigo-500 hover:underline">
+                    <span className="text-sm text-blue-500 hover:underline">
                       Details
                     </span>
                   </Link>

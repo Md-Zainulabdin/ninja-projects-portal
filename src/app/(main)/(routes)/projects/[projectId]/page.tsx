@@ -23,7 +23,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
         </div>
         <div className="space-x-3">
           {userId === project?.userId ? (
-            <Button size={"icon"} variant={"outline"}>
+            <Button size={"icon"} variant={"secondary"}>
               <Link href={`/update/${project?.id}`}>
                 {" "}
                 <Edit2 className="w-4 h-4" />
@@ -31,7 +31,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
             </Button>
           ) : null}
 
-          <Button size={"icon"} variant={"outline"}>
+          <Button size={"icon"} color="#222">
             <Link href={project?.liveUrl || "/"} target="_blank">
               {" "}
               <ArrowUpRight className="w-5 h-5" />
@@ -66,7 +66,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
               {project?.techs.map((tech) => (
                 <div
                   key={tech}
-                  className="border px-3 py-1 rounded-md border-indigo-500 text-indigo-500"
+                  className="border px-3 py-1 rounded-md border-blue-500 text-blue-500"
                 >
                   {tech}
                 </div>
