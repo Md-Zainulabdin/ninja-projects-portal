@@ -26,15 +26,15 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
             <Button size={"icon"} variant={"outline"}>
               <Link href={`/update/${project?.id}`}>
                 {" "}
-                <Edit2 className="w-4 h-4 text-muted-foreground" />
+                <Edit2 className="w-4 h-4" />
               </Link>
             </Button>
           ) : null}
-          
+
           <Button size={"icon"} variant={"outline"}>
             <Link href={project?.liveUrl || "/"} target="_blank">
               {" "}
-              <ArrowUpRight className="w-5 h-5 text-muted-foreground" />
+              <ArrowUpRight className="w-5 h-5" />
             </Link>
           </Button>
         </div>

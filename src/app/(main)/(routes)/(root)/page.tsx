@@ -15,7 +15,9 @@ const Home = async () => {
       </div>
 
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-medium ">See All Latest Projects</h2>
+        <div>
+          <h2 className="text-xl font-medium ">See All Latest Projects</h2>
+        </div>
         <FilterOptions />
       </div>
 

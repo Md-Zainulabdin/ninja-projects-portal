@@ -21,6 +21,10 @@ import { useFilter } from "@/hooks/ProjectFilter";
 
 const techStacks = [
   {
+    value: "all",
+    label: "ALL",
+  },
+  {
     value: "nextjs",
     label: "Next JS",
   },
@@ -45,7 +49,7 @@ const techStacks = [
 const FilterOptions = () => {
   const filters = useFilter();
 
-//   console.log(filters.filter);
+  // console.log(filters.filter);
 
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -80,7 +84,7 @@ const FilterOptions = () => {
                 onSelect={(currentValue) => {
                   //   console.log(currentValue);
                   setValue(currentValue === value ? "" : currentValue);
-                //   filters.setFilterValue(value);
+                  filters.setFilterValue(tech.value);
                   setOpen(false);
                 }}
               >
