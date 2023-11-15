@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/Footer";
 
 const Home = () => {
   return (
@@ -39,7 +41,19 @@ const Home = () => {
 
       <div className="footer-gradient z-0"></div>
 
-      <div className="Hero-Image"></div>
+      <div className="Hero-Image relative z-20 w-full flex justify-center items-center mb-12">
+      <div className="w-full rounded-xl p-3 bg-gray-900/5 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+              <Image
+                src={"/hero-bg.jpg"}
+                alt="product preview"
+                width={1200}
+                height={500}
+                // quality={100}
+                className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
+              />
+            </div>
+      </div>
+
     </div>
   );
 };

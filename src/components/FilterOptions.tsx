@@ -61,7 +61,7 @@ const FilterOptions = () => {
           variant={"outline"}
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[120px] md:w-[200px] justify-between"
         >
           {value
             ? techStacks.find((tech) => tech.value === value)?.label
