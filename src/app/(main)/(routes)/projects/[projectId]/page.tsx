@@ -1,10 +1,13 @@
+import Image from "next/image";
+import Link from "next/link";
+
+import { auth, clerkClient } from "@clerk/nextjs";
+import { ArrowUpRight, Edit2 } from "lucide-react";
+
 import BackBtn from "@/components/ui/Backbtn";
 import { Button } from "@/components/ui/button";
 import prismadb from "@/lib/prismadb";
-import { auth } from "@clerk/nextjs";
-import { ArrowUpRight, Edit2 } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
   const project = await prismadb.project.findUnique({
@@ -14,6 +17,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
   });
 
   const { userId } = auth();
+  const user = await clerkClient.users.getUser(project?.userId || "");
 
   return (
     <div>
@@ -74,6 +78,35 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
                 className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
               />
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="my-3">
+        <Separator />
+      </div>
+
+      <div>
+        <div className="user-card flex-col text-center flex items-center space-y-3 py-6">
+          <div>
+            <Image
+              src={user?.imageUrl}
+              alt="Profile Image"
+              width={70}
+              height={70}
+              className="rounded-full"
+            />
+          </div>
+
+          <div>
+            <h1 className="font-medium">
+              {user?.firstName} {user?.lastName}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              {user.emailAddresses.map((email) => (
+                <span>{email?.emailAddress}</span>
+              ))}
+            </p>
           </div>
         </div>
       </div>

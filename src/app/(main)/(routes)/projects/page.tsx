@@ -4,6 +4,7 @@ import Hero from "@/app/(main)/(routes)/projects/_components/Hero";
 import ProjectCard from "@/app/(main)/(routes)/projects/_components/Project-Card";
 import FilterOptions from "@/components/FilterOptions";
 import { Separator } from "@/components/ui/separator";
+import Heading from "@/components/ui/Heading";
 
 const ProjectsPage = async () => {
   const projects = await prismadb.project.findMany({});
@@ -16,7 +17,7 @@ const ProjectsPage = async () => {
 
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-medium ">See All Latest Projects</h2>
+          <h2 className="text-xl font-semibold ">See All Latest Projects</h2>
         </div>
         <FilterOptions />
       </div>
