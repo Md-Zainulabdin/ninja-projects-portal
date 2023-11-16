@@ -104,7 +104,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
             </h1>
             <p className="text-sm text-muted-foreground">
               {user.emailAddresses.map((email) => (
-                <span>{email?.emailAddress}</span>
+                <span key={email.id}>{email?.emailAddress}</span>
               ))}
             </p>
           </div>

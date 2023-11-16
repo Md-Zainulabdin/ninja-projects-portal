@@ -52,7 +52,6 @@ const ProjectModal = () => {
       description={project?.description || "Project Description"}
       isOpen={projectModal.isOpen}
       onClose={projectModal.onClose}
-      removeId={projectID.removeProjectId}
     >
       <div>
         <div className="img-src rounded-xl overflow-hidden">
