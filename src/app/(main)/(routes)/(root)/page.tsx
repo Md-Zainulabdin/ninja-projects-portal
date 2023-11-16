@@ -44,7 +44,7 @@ const Home = () => {
       <div className="Hero-Image relative z-20 w-full flex justify-center items-center mb-12">
       <div className="w-full rounded-xl p-3 bg-gray-900/5 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
               <Image
-                src={"/hero-bg.jpg"}
+                src={"/hero-bg.png"}
                 alt="product preview"
                 width={1200}
                 height={500}

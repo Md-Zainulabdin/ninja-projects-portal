@@ -18,4 +18,6 @@ model Project {
   liveUrl     String
   userId      String
   techs       String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

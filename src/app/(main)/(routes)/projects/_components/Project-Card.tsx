@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { AlertCircle, ArrowUpRight } from "lucide-react";
 
 import { Project } from "@prisma/client";
 import { Button } from "@/components/ui/button";
@@ -95,8 +95,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => {
             </div>
           ))
         ) : (
-          <div>
-            <h1>Nothing to Show</h1>
+          <div className="flex flex-col space-y-2 items-center justify-center py-8">
+            <AlertCircle className="w-10 h-10 text-red-500"/>
+            <h1 className="text-xl font-medium">Nothing to Show</h1>
           </div>
         )}
       </div>

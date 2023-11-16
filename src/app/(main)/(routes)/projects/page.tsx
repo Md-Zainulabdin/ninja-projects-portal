@@ -12,7 +12,7 @@ const ProjectsPage = async () => {
   return (
     <>
 
-      <div className="project-bg w-full h-[50vh] absolute top-[80px] left-0 -z-10 opacity-20"/>
+      <div className="project-bg w-full h-[50vh] absolute top-[80px] left-0 -z-10 opacity-10"/>
 
       <div className="w-full py-12">
         <Hero />
