@@ -7,7 +7,10 @@ const UserCard = async () => {
     <div className="px-6 flex flex-col gap-4 justify-center items-center">
         <div className="img">
           <Image
-          className="rounded-full w-[80px] h-[80px]"
+          width={120}
+          height={120}
+          quality={100}
+          className="rounded-full"
           src={user?.imageUrl || ""}
           alt="Profile Image"
           />

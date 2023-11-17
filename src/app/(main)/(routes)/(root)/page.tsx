@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
-import Footer from "@/components/Footer";
 
 const Home = () => {
   return (
@@ -42,18 +41,24 @@ const Home = () => {
       <div className="footer-gradient z-0"></div>
 
       <div className="Hero-Image relative z-20 w-full flex justify-center items-center mb-12">
-      <div className="w-full rounded-xl p-3 bg-gray-900/5 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-              <Image
-                src={"/hero-bg.png"}
-                alt="product preview"
-                width={1200}
-                height={500}
-                // quality={100}
-                className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
-              />
-            </div>
+        <div className="w-full rounded-xl p-3 bg-gray-900/5 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+          <Image
+            src={"/hero-bg.jpg"}
+            alt="product preview"
+            width={1200}
+            height={500}
+            // quality={100}
+            className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
+          />
+        </div>
       </div>
 
+      <footer className="w-full h-[60px] flex items-center justify-center border-t mt-6">
+        <div className="text-center py-3">
+          <h1 className="text-lg text-[#555] font-medium">Innovate<span className="text-indigo-500">.dev</span></h1>
+          <p className="text-sm text-muted-foreground">Developed by ~ Zain-ul-Abdin</p>
+        </div>
+      </footer>
     </div>
   );
 };
