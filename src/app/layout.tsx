@@ -19,6 +19,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+          <link rel="shortcut icon" href="/idea.png" type="image/x-icon" />
+        </head>
         <body>
           <ToastProvider />
           <ModalProvider />
